@@ -4,14 +4,14 @@ defmodule ExPhoneNumber.Mixfile do
   def project do
     [app: :ex_phone_number,
      version: "0.1.0",
-     elixir: "~> 1.3.2",
+     elixir: "~> 1.4",
      build_embedded: Mix.env == :prod,
      start_permanent: Mix.env == :prod,
      test_coverage: [tool: ExCoveralls],
      preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test],
-     deps: deps,
-     description: description,
-     package: package]
+     deps: deps(),
+     description: description(),
+     package: package()]
   end
 
   def package do
@@ -38,7 +38,8 @@ defmodule ExPhoneNumber.Mixfile do
       {:ex_spec, "~> 2.0", only: :test},
       {:excoveralls, "~> 0.5.6", only: :test},
       {:credo, "~> 0.4.11", only: [:dev, :test]},
-      {:ex_doc, ">= 0.0.0", only: :dev}
+      {:ex_doc, ">= 0.0.0", only: :dev},
+      {:exprof, ">= 0.0.0", only: :dev}
     ]
   end
 end

@@ -9,8 +9,13 @@ defmodule ExPhoneNumber.Metadata do
     Model.PhoneNumber
   }
 
+  metadata_file = case Mix.env do
+    :test -> Path.join(["./resources", "PhoneNumberMetadataForTesting.xml"])
+    _     -> Path.join(["./resources", "PhoneNumberMetadata.xml"])
+  end
+
   list_region_code_to_metadata =
-    Application.get_env(:ex_phone_number, :metadata_file)
+    metadata_file
     |> File.read!()
     |> xpath(
       ~x"//phoneNumberMetadata/territories/territory"el,
